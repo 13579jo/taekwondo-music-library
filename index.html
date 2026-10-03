@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>自由品勢音樂庫</title>
+  <title>自由品勢音樂與音效素材庫</title>
 
   <style>
     * {
@@ -19,16 +19,18 @@
       color: white;
     }
 
-    /* ===== 頂部標題 ===== */
+    /* ==============================
+       網頁最上方標題
+    ============================== */
     .header {
       text-align: center;
-      padding: 45px 20px 35px;
+      padding: 45px 20px 30px;
       background: linear-gradient(135deg, #101018, #24104d);
     }
 
     .header h1 {
       margin: 0;
-      font-size: 38px;
+      font-size: 34px;
     }
 
     .header p {
@@ -37,213 +39,575 @@
       font-size: 16px;
     }
 
-    /* ===== 主要內容 ===== */
+    /* ==============================
+       主功能按鈕
+    ============================== */
+    .tabs {
+      width: 92%;
+      max-width: 900px;
+      margin: 25px auto 0;
+
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .tab-button {
+      border: 1px solid #39394a;
+      background: #171721;
+      color: white;
+      padding: 14px 10px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .tab-button.active {
+      background: #6d3df5;
+      border-color: #6d3df5;
+    }
+
+    /* ==============================
+       內容區域
+    ============================== */
     .container {
       width: 92%;
       max-width: 900px;
-      margin: 30px auto;
+      margin: 22px auto 60px;
     }
 
-    /* ===== 功能按鈕 ===== */
-    .menu {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-bottom: 30px;
+    .section-title {
+      font-size: 22px;
+      margin-bottom: 16px;
     }
 
-    .menu button,
-    .menu a {
-      min-height: 65px;
-      border: 0;
-      border-radius: 14px;
-      background: #1d1d29;
-      color: white;
-      font-size: 18px;
+    /* ==============================
+       音樂卡片
+    ============================== */
+    .music-card {
+      background: #171721;
+      border: 1px solid #292936;
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 15px;
+    }
+
+    .music-title {
+      font-size: 20px;
       font-weight: bold;
-      cursor: pointer;
+      margin-bottom: 6px;
+    }
 
+    .music-info {
+      color: #aaaabc;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    /* ==============================
+       播放器
+    ============================== */
+    audio {
+      width: 100%;
+      display: block;
+      margin-bottom: 14px;
+    }
+
+    /* ==============================
+       收藏與下載按鈕
+    ============================== */
+    .actions {
       display: flex;
-      align-items: center;
-      justify-content: center;
-
-      text-decoration: none;
+      gap: 10px;
     }
 
-    .menu button:hover,
-    .menu a:hover {
-      background: #744cff;
+    .action-button {
+      flex: 1;
+      padding: 11px;
+      border-radius: 10px;
+      border: 1px solid #3a3a4a;
+      background: #22222e;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
     }
 
-    .menu .active {
-      background: linear-gradient(135deg, #6446ff, #8a4cff);
+    .action-button:hover {
+      background: #30303f;
     }
 
-    /* ===== 素材區 ===== */
-    .section {
-      background: #15151f;
-      border: 1px solid #292938;
-      border-radius: 18px;
-      padding: 22px;
+    .favorite-active {
+      background: #5b2041;
+      border-color: #ff5b9f;
+      color: #ff8cba;
     }
 
-    .section h2 {
-      margin-top: 0;
-      font-size: 26px;
+    .download-button {
+      background: #6239db;
+      border-color: #754bf1;
     }
 
-    .empty {
-      padding: 40px 15px;
+    /* ==============================
+       空白提示
+    ============================== */
+    .empty-message {
       text-align: center;
-      color: #aaaabb;
-      line-height: 1.8;
+      background: #171721;
+      border: 1px dashed #3a3a4a;
+      border-radius: 16px;
+      padding: 35px 20px;
+      color: #aaaabc;
     }
 
+    /* ==============================
+       手機版
+    ============================== */
     @media (max-width: 650px) {
+
       .header {
-        padding: 35px 15px 28px;
+        padding: 35px 15px 25px;
       }
 
       .header h1 {
-        font-size: 29px;
+        font-size: 27px;
+      }
+
+      .header p {
+        font-size: 14px;
+      }
+
+      .tabs {
+        width: 94%;
+        gap: 6px;
+      }
+
+      .tab-button {
+        font-size: 14px;
+        padding: 12px 5px;
       }
 
       .container {
         width: 94%;
-        margin-top: 20px;
       }
 
-      .menu {
-        gap: 9px;
+      .music-card {
+        padding: 14px;
       }
 
-      .menu button,
-      .menu a {
-        min-height: 58px;
-        font-size: 16px;
+      .music-title {
+        font-size: 18px;
+      }
+
+      .actions {
+        gap: 7px;
+      }
+
+      .action-button {
+        font-size: 14px;
+        padding: 10px 5px;
       }
     }
   </style>
 </head>
 
+
 <body>
 
-  <!-- ===== 網站標題 ===== -->
+  <!-- ==============================
+       網頁標題
+  ============================== -->
   <header class="header">
-    <h1>🥋 自由品勢音樂庫</h1>
-    <p>自由品勢音樂・音效素材庫</p>
+
+    <h1>🥋 自由品勢音樂與音效素材庫</h1>
+
+    <p>
+      自由品勢音樂・音效素材・線上試聽
+    </p>
+
   </header>
 
 
+  <!-- ==============================
+       三個主要功能
+  ============================== -->
+  <div class="tabs">
+
+    <button
+      id="musicButton"
+      class="tab-button active"
+      onclick="showSection('music')"
+    >
+      🎵 音樂
+    </button>
+
+    <button
+      id="effectButton"
+      class="tab-button"
+      onclick="showSection('effect')"
+    >
+      ⚡ 音效
+    </button>
+
+    <button
+      id="favoriteButton"
+      class="tab-button"
+      onclick="showSection('favorite')"
+    >
+      ♥ 我的最愛
+    </button>
+
+  </div>
+
+
+  <!-- ==============================
+       網頁主要內容
+  ============================== -->
   <main class="container">
 
-    <!-- ===== 功能選單 ===== -->
-    <div class="menu">
+    <h2 id="sectionTitle" class="section-title">
+      🎵 音樂
+    </h2>
 
-      <button
-        id="musicButton"
-        class="active"
-        onclick="showSection('music')">
-        🎵 音樂
-      </button>
-
-      <button
-        id="effectButton"
-        onclick="showSection('effects')">
-        ⚡ 音效
-      </button>
-
-      <button
-        id="favoriteButton"
-        onclick="showSection('favorites')">
-        ♥ 我的最愛
-      </button>
-
-      <!-- 之後會連接獨立的剪輯工作室 -->
-      <a href="editor.html">
-        ✂️ 音樂剪輯
-      </a>
-
-    </div>
-
-
-    <!-- ===== 顯示內容 ===== -->
-    <section class="section">
-
-      <h2 id="sectionTitle">
-        🎵 音樂
-      </h2>
-
-      <div id="sectionContent" class="empty">
-        音樂素材庫已建立。<br>
-        下一步我們再加入第一首音樂。
-      </div>
-
-    </section>
+    <div id="content"></div>
 
   </main>
 
 
   <script>
+
+    /* ==========================================
+       音樂資料
+
+       以後新增歌曲，只需要在這裡增加資料。
+    ========================================== */
+
+    const songs = [
+
+      {
+        id: "music01",
+
+        title: "自由品勢音樂01",
+
+        file: "自由品勢音樂01 (2).mp3",
+
+        info: "純音樂｜自由品勢",
+
+        type: "music"
+      }
+
+    ];
+
+
+    /* ==========================================
+       判斷歌曲是否已經收藏
+    ========================================== */
+
+    function isFavorite(id) {
+
+      return localStorage.getItem(
+        "favorite_" + id
+      ) === "true";
+
+    }
+
+
+    /* ==========================================
+       收藏／取消收藏
+    ========================================== */
+
+    function toggleFavorite(id) {
+
+      const current = isFavorite(id);
+
+      localStorage.setItem(
+        "favorite_" + id,
+        current ? "false" : "true"
+      );
+
+      renderCurrentSection();
+
+    }
+
+
+    /* ==========================================
+       目前所在頁面
+    ========================================== */
+
+    let currentSection = "music";
+
+
+    /* ==========================================
+       切換：
+       音樂 / 音效 / 我的最愛
+    ========================================== */
+
     function showSection(type) {
+
+      currentSection = type;
+
+      document
+        .querySelectorAll(".tab-button")
+        .forEach(button => {
+          button.classList.remove("active");
+        });
+
+
+      if (type === "music") {
+
+        document
+          .getElementById("musicButton")
+          .classList.add("active");
+
+      }
+
+
+      if (type === "effect") {
+
+        document
+          .getElementById("effectButton")
+          .classList.add("active");
+
+      }
+
+
+      if (type === "favorite") {
+
+        document
+          .getElementById("favoriteButton")
+          .classList.add("active");
+
+      }
+
+
+      renderCurrentSection();
+
+    }
+
+
+    /* ==========================================
+       顯示目前頁面內容
+    ========================================== */
+
+    function renderCurrentSection() {
 
       const title =
         document.getElementById("sectionTitle");
 
       const content =
-        document.getElementById("sectionContent");
-
-      const buttons = [
-        document.getElementById("musicButton"),
-        document.getElementById("effectButton"),
-        document.getElementById("favoriteButton")
-      ];
-
-      buttons.forEach(button => {
-        button.classList.remove("active");
-      });
+        document.getElementById("content");
 
 
-      if (type === "music") {
+      content.innerHTML = "";
+
+
+      /* ------------------------------
+         音樂
+      ------------------------------ */
+
+      if (currentSection === "music") {
 
         title.textContent = "🎵 音樂";
 
-        content.innerHTML =
-          "音樂素材庫已建立。<br>下一步我們再加入第一首音樂。";
+        const musicSongs =
+          songs.filter(song =>
+            song.type === "music"
+          );
 
-        document
-          .getElementById("musicButton")
-          .classList.add("active");
+        renderSongs(musicSongs);
+
       }
 
 
-      if (type === "effects") {
+      /* ------------------------------
+         音效
+      ------------------------------ */
+
+      if (currentSection === "effect") {
 
         title.textContent = "⚡ 音效";
 
-        content.innerHTML =
-          "音效素材庫已建立。<br>之後我們會把自由品勢音效放在這裡。";
+        const effects =
+          songs.filter(song =>
+            song.type === "effect"
+          );
 
-        document
-          .getElementById("effectButton")
-          .classList.add("active");
+
+        if (effects.length === 0) {
+
+          content.innerHTML = `
+            <div class="empty-message">
+
+              ⚡ 音效素材準備中
+
+              <br><br>
+
+              下一步我們再加入自由品勢專用音效。
+
+            </div>
+          `;
+
+        } else {
+
+          renderSongs(effects);
+
+        }
+
       }
 
 
-      if (type === "favorites") {
+      /* ------------------------------
+         我的最愛
+      ------------------------------ */
+
+      if (currentSection === "favorite") {
 
         title.textContent = "♥ 我的最愛";
 
-        content.innerHTML =
-          "你收藏、準備拿去剪輯的音樂與音效，之後會顯示在這裡。";
+        const favorites =
+          songs.filter(song =>
+            isFavorite(song.id)
+          );
 
-        document
-          .getElementById("favoriteButton")
-          .classList.add("active");
+
+        if (favorites.length === 0) {
+
+          content.innerHTML = `
+            <div class="empty-message">
+
+              目前還沒有收藏音樂。
+
+              <br><br>
+
+              點歌曲下面的「♡ 加入我的最愛」即可收藏。
+
+            </div>
+          `;
+
+        } else {
+
+          renderSongs(favorites);
+
+        }
+
       }
 
     }
+
+
+    /* ==========================================
+       建立歌曲播放器
+    ========================================== */
+
+    function renderSongs(songList) {
+
+      const content =
+        document.getElementById("content");
+
+
+      songList.forEach(song => {
+
+        const favorite =
+          isFavorite(song.id);
+
+
+        const card =
+          document.createElement("div");
+
+
+        card.className =
+          "music-card";
+
+
+        card.innerHTML = `
+
+          <div class="music-title">
+            ${song.title}
+          </div>
+
+
+          <div class="music-info">
+            ${song.info}
+          </div>
+
+
+          <audio controls preload="metadata">
+
+            <source
+              src="${song.file}"
+              type="audio/mpeg"
+            >
+
+            您的瀏覽器不支援音樂播放。
+
+          </audio>
+
+
+          <div class="actions">
+
+            <button
+              class="action-button
+              ${favorite ? "favorite-active" : ""}"
+              onclick="toggleFavorite('${song.id}')"
+            >
+
+              ${favorite
+                ? "♥ 已收藏"
+                : "♡ 加入我的最愛"}
+
+            </button>
+
+
+            <button
+              class="action-button download-button"
+              onclick="downloadSong('${song.file}')"
+            >
+
+              ⬇️ 下載 MP3
+
+            </button>
+
+          </div>
+
+        `;
+
+
+        content.appendChild(card);
+
+      });
+
+    }
+
+
+    /* ==========================================
+       下載 MP3
+    ========================================== */
+
+    function downloadSong(file) {
+
+      const link =
+        document.createElement("a");
+
+      link.href = file;
+
+      link.download = file;
+
+      document.body.appendChild(link);
+
+      link.click();
+
+      link.remove();
+
+    }
+
+
+    /* ==========================================
+       網頁第一次開啟
+    ========================================== */
+
+    renderCurrentSection();
+
   </script>
 
 </body>
+
 </html>
