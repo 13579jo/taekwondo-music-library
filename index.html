@@ -817,18 +817,24 @@ const songs = [
     <button
         type="button"
         onclick="toggleFavorite('${song.id}')"
-        style="
-            border:none;
-            background:transparent;
-            font-size:28px;
-            cursor:pointer;
-            padding:6px;
+       style="
+    border:none;
+    background:transparent;
+    color:${
+        song.type === 'effect'
+            ? (favorite ? '#ffd54a' : 'white')
+            : (favorite ? '#ff4d6d' : 'white')
+    };
+    font-size:28px;
+    cursor:pointer;
+    padding:6px;
+"
         "
     >
-        ${song.type === "effect"
-            ? (favorite ? "⭐" : "☆")
-            : (favorite ? "♥" : "♡")
-        }
+     ${song.type === "effect"
+    ? (favorite ? "★" : "☆")
+    : (favorite ? "♥" : "♡")
+}
     </button>
 
 </div>
