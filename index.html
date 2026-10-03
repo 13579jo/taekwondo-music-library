@@ -731,12 +731,13 @@ const songs = [
 
   if (currentSection === "favorite") {
 
-    title.textContent = "♡ 我的最愛";
+  title.textContent = "♥ 收藏";
 
-    const favorites =
-      songs.filter(song =>
+  const favorites =
+    songs.filter(song =>
+        song.type === "music" &&
         isFavorite(song.id)
-      );
+    );
 
     if (favorites.length === 0) {
 
@@ -747,7 +748,7 @@ const songs = [
 
           <br><br>
 
-          點歌曲下面的「♡ 加入我的最愛」即可收藏。
+          點歌曲下面的「♡  收藏」即可收藏。
 
         </div>
       `;
@@ -818,10 +819,9 @@ const songs = [
               onclick="toggleFavorite('${song.id}')"
             >
 
-              ${favorite
-                ? "♥ 已收藏"
-                : "♡ 加入我的最愛"}
-
+           ${song.type === "effect"
+  ? (favorite ? "⭐ 已標記" : "☆ 標記")
+  : (favorite ? "♥ 已收藏" : "♡ 收藏")}
             </button>
 
 
