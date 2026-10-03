@@ -799,43 +799,41 @@ const songs = [
           </div>
 
 
-          <audio controls preload="metadata">
+          <div style="display:flex; align-items:center; gap:10px;">
 
-            <source
-              src="${song.file}"
-              type="audio/mpeg"
-            >
+    <audio
+        controls
+        preload="metadata"
+        style="flex:1; min-width:0;"
+    >
+        <source
+            src="${song.file}"
+            type="audio/mpeg"
+        >
 
-            您的瀏覽器不支援音樂播放。
+        您的瀏覽器不支援音樂播放。
+    </audio>
 
-          </audio>
+    <button
+        type="button"
+        onclick="toggleFavorite('${song.id}')"
+        style="
+            border:none;
+            background:transparent;
+            font-size:28px;
+            cursor:pointer;
+            padding:6px;
+        "
+    >
+        ${song.type === "effect"
+            ? (favorite ? "⭐" : "☆")
+            : (favorite ? "♥" : "♡")
+        }
+    </button>
 
+</div>
 
-          <div class="actions">
-
-            <button
-              class="action-button
-              ${favorite ? "favorite-active" : ""}"
-              onclick="toggleFavorite('${song.id}')"
-            >
-
-           ${song.type === "effect"
-  ? (favorite ? "⭐ 已標記" : "☆ 標記")
-  : (favorite ? "♥ 已收藏" : "♡ 收藏")}
-            </button>
-
-
-            <button
-              class="action-button download-button"
-              onclick="downloadSong('${song.file}')"
-            >
-
-              ⬇️ 下載 MP3
-
-            </button>
-
-          </div>
-
+ 
         `;
 
 
