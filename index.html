@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>自由品勢音樂庫</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, "Microsoft JhengHei", sans-serif;
+      background: #0b0b12;
+      color: white;
+    }
+
+    /* ===== 頂部標題 ===== */
+    .header {
+      text-align: center;
+      padding: 45px 20px 35px;
+      background: linear-gradient(135deg, #101018, #24104d);
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 38px;
+    }
+
+    .header p {
+      margin: 12px 0 0;
+      color: #c9c9d8;
+      font-size: 16px;
+    }
+
+    /* ===== 主要內容 ===== */
+    .container {
+      width: 92%;
+      max-width: 900px;
+      margin: 30px auto;
+    }
+
+    /* ===== 功能按鈕 ===== */
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .menu button,
+    .menu a {
+      min-height: 65px;
+      border: 0;
+      border-radius: 14px;
+      background: #1d1d29;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-decoration: none;
+    }
+
+    .menu button:hover,
+    .menu a:hover {
+      background: #744cff;
+    }
+
+    .menu .active {
+      background: linear-gradient(135deg, #6446ff, #8a4cff);
+    }
+
+    /* ===== 素材區 ===== */
+    .section {
+      background: #15151f;
+      border: 1px solid #292938;
+      border-radius: 18px;
+      padding: 22px;
+    }
+
+    .section h2 {
+      margin-top: 0;
+      font-size: 26px;
+    }
+
+    .empty {
+      padding: 40px 15px;
+      text-align: center;
+      color: #aaaabb;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 650px) {
+      .header {
+        padding: 35px 15px 28px;
+      }
+
+      .header h1 {
+        font-size: 29px;
+      }
+
+      .container {
+        width: 94%;
+        margin-top: 20px;
+      }
+
+      .menu {
+        gap: 9px;
+      }
+
+      .menu button,
+      .menu a {
+        min-height: 58px;
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== 網站標題 ===== -->
+  <header class="header">
+    <h1>🥋 自由品勢音樂庫</h1>
+    <p>自由品勢音樂・音效素材庫</p>
+  </header>
+
+
+  <main class="container">
+
+    <!-- ===== 功能選單 ===== -->
+    <div class="menu">
+
+      <button
+        id="musicButton"
+        class="active"
+        onclick="showSection('music')">
+        🎵 音樂
+      </button>
+
+      <button
+        id="effectButton"
+        onclick="showSection('effects')">
+        ⚡ 音效
+      </button>
+
+      <button
+        id="favoriteButton"
+        onclick="showSection('favorites')">
+        ♥ 我的最愛
+      </button>
+
+      <!-- 之後會連接獨立的剪輯工作室 -->
+      <a href="editor.html">
+        ✂️ 音樂剪輯
+      </a>
+
+    </div>
+
+
+    <!-- ===== 顯示內容 ===== -->
+    <section class="section">
+
+      <h2 id="sectionTitle">
+        🎵 音樂
+      </h2>
+
+      <div id="sectionContent" class="empty">
+        音樂素材庫已建立。<br>
+        下一步我們再加入第一首音樂。
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <script>
+    function showSection(type) {
+
+      const title =
+        document.getElementById("sectionTitle");
+
+      const content =
+        document.getElementById("sectionContent");
+
+      const buttons = [
+        document.getElementById("musicButton"),
+        document.getElementById("effectButton"),
+        document.getElementById("favoriteButton")
+      ];
+
+      buttons.forEach(button => {
+        button.classList.remove("active");
+      });
+
+
+      if (type === "music") {
+
+        title.textContent = "🎵 音樂";
+
+        content.innerHTML =
+          "音樂素材庫已建立。<br>下一步我們再加入第一首音樂。";
+
+        document
+          .getElementById("musicButton")
+          .classList.add("active");
+      }
+
+
+      if (type === "effects") {
+
+        title.textContent = "⚡ 音效";
+
+        content.innerHTML =
+          "音效素材庫已建立。<br>之後我們會把自由品勢音效放在這裡。";
+
+        document
+          .getElementById("effectButton")
+          .classList.add("active");
+      }
+
+
+      if (type === "favorites") {
+
+        title.textContent = "♥ 我的最愛";
+
+        content.innerHTML =
+          "你收藏、準備拿去剪輯的音樂與音效，之後會顯示在這裡。";
+
+        document
+          .getElementById("favoriteButton")
+          .classList.add("active");
+      }
+
+    }
+  </script>
+
+</body>
+</html>
