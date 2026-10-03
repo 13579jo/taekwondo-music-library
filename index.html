@@ -253,7 +253,7 @@
       class="tab-button"
       onclick="showSection('favorite')"
     >
-      ♥ 我的最愛
+      ♥ 收藏
     </button>
 
   </div>
@@ -725,42 +725,40 @@ const songs = [
       }
 
 
-      /* ------------------------------
-         我的最愛
-      ------------------------------ */
+       /* ==============================
+     我的最愛
+     ============================== */
 
-      if (currentSection === "favorite") {
+  if (currentSection === "favorite") {
 
-        title.textContent = "♥ 我的最愛";
+    title.textContent = "♡ 我的最愛";
 
-        const favorites =
-          songs.filter(song =>
-            isFavorite(song.id)
-          );
+    const favorites =
+      songs.filter(song =>
+        isFavorite(song.id)
+      );
 
+    if (favorites.length === 0) {
 
-        if (favorites.length === 0) {
+      content.innerHTML = `
+        <div class="empty-message">
 
-          content.innerHTML = `
-            <div class="empty-message">
+          目前還沒有收藏音樂。
 
-              目前還沒有收藏音樂。
+          <br><br>
 
-              <br><br>
+          點歌曲下面的「♡ 加入我的最愛」即可收藏。
 
-              點歌曲下面的「♡ 加入我的最愛」即可收藏。
+        </div>
+      `;
 
-            </div>
-          `;
+    } else {
 
-        } else {
+      renderSongs(favorites);
 
-          renderSongs(favorites);
+    }
 
-        }
-
-      }
-
+  }
     }
 
 
