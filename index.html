@@ -585,27 +585,82 @@ const songs = [
        收藏／取消收藏
     ========================================== */
 
-    function toggleFavorite(id) {
+  function toggleFavorite(id, type, button) {
 
-      const current = isFavorite(id);
+    const current = isFavorite(id);
+    const newFavorite = !current;
 
-      localStorage.setItem(
+    localStorage.setItem(
         "favorite_" + id,
-        current ? "false" : "true"
-      );
+        newFavorite ? "true" : "false"
+    );
 
-      renderCurrentSection();
+    // 只更新愛心／星星，不重新載入播放器
+    if (type === "effect") {
+
+        button.textContent = newFavorite ? "★" : "☆";
+        button.style.color = newFavorite ? "#ffd54a" : "white";
+
+    } else {
+
+        button.textContent = newFavorite ? "♥" : "♡";
+        button.style.color = newFavorite ? "#ff4d6d" : "white";
 
     }
 
+    // 收藏頁取消收藏時，直接把這張音樂卡移除
+    if (
+        currentSection === "favorite" &&
+        type === "music" &&
+        !newFavorite
+    ) {
 
+        const card = button.closest(".music-card");
+
+        if (card) {
+            card.remove();
+        }
+    }
+}
     /* ==========================================
        目前所在頁面
     ========================================== */
 
     let currentSection = "music";
 
+// ========================================
+// 最多同時播放 2 首音樂
+// 第 3 首播放時，自動暫停最早播放的音樂
+// ========================================
 
+let playingMusicQueue = [];
+
+function setupMusicPlayLimit(audio) {
+
+    audio.addEventListener("play", function () {
+
+        // 移除已停止或已結束的播放器
+        playingMusicQueue = playingMusicQueue.filter(player =>
+            player !== audio &&
+            player.isConnected &&
+            !player.paused &&
+            !player.ended
+        );
+
+        // 最新播放的放最後面
+        playingMusicQueue.push(audio);
+
+        // 超過 2 首，就暫停最早播放的那一首
+        while (playingMusicQueue.length > 2) {
+
+            const oldest = playingMusicQueue.shift();
+
+            if (oldest && !oldest.paused) {
+                oldest.pause();
+            }
+        }
+    });
+}
     /* ==========================================
        切換：
        音樂 / 音效 / 我的最愛
@@ -816,7 +871,7 @@ const songs = [
 
     <button
         type="button"
-        onclick="toggleFavorite('${song.id}')"
+   onclick="toggleFavorite('${song.id}', '${song.type}', this)"
        style="
     border:none;
     background:transparent;
@@ -844,6 +899,11 @@ const songs = [
 
 
         content.appendChild(card);
+const audio = card.querySelector("audio");
+
+if (audio && song.type === "music") {
+    setupMusicPlayLimit(audio);
+}
 
       });
 
