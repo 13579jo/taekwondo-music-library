@@ -231,9 +231,9 @@
   </header>
 
 
-  <!-- ==============================
-       三個主要功能
-  ============================== -->
+  <!-- =========================
+     四個主要功能
+========================= -->
   <div class="tabs">
 
     <button
@@ -244,6 +244,16 @@
       🎵 音樂
     </button>
 
+    <button
+  id="spliceButton"
+  class="tab-button"
+  onclick="showSection('splice')"
+>
+  ✂️ 拼接素材
+</button>
+
+
+    
     <button
       id="effectButton"
       class="tab-button"
@@ -293,6 +303,8 @@ const songs = [
     info: "純音樂｜自由品勢",
     type: "music"
   },
+
+  
   {
     id: "music02",
     title: "02",
@@ -572,6 +584,31 @@ const songs = [
     
   
 ];
+
+// ========================================
+// 拼接素材 01～62
+// 自動建立拼接素材資料
+// ========================================
+
+const spliceMaterials = Array.from(
+    { length: 62 },
+    (_, index) => {
+
+        const number = String(index + 1).padStart(2, "0");
+
+        return {
+            id: "splice" + number,
+            title: "拼接素材 " + number,
+            info: "短音樂片段｜可用於片頭、過場、高潮或結尾",
+            file: `拼接素材/${number}_拼接素材.mp3`,
+            type: "splice"
+        };
+    }
+);
+
+songs.push(...spliceMaterials);
+
+    
     /* ==========================================
        判斷歌曲是否已經收藏
     ========================================== */
@@ -600,18 +637,25 @@ const songs = [
     );
 
     // 只更新愛心／星星，不重新載入播放器
-    if (type === "effect") {
+ if (type === "effect") {
 
-        button.textContent = newFavorite ? "★" : "☆";
-        button.style.color = newFavorite ? "#ffd54a" : "white";
+    // 音效：☆ → ★
+    button.textContent = newFavorite ? "★" : "☆";
+    button.style.color = newFavorite ? "#ffd54a" : "white";
 
-    } else {
+} else if (type === "splice") {
 
-        button.textContent = newFavorite ? "♥" : "♡";
-        button.style.color = newFavorite ? "#ff4d6d" : "white";
+    // 拼接素材：剪刀，標記後變紫色
+    button.textContent = "✂";
+    button.style.color = newFavorite ? "#a855f7" : "white";
 
-    }
+} else {
 
+    // 音樂：♡ → ♥
+    button.textContent = newFavorite ? "♥" : "♡";
+    button.style.color = newFavorite ? "#ff4d6d" : "white";
+
+}
     // 收藏頁取消收藏時，直接把這張音樂卡移除
     if (
         currentSection === "favorite" &&
@@ -745,7 +789,22 @@ function setupMusicPlayLimit(audio) {
         renderSongs(musicSongs);
 
       }
+/* -----------------------------
+   拼接素材
+----------------------------- */
 
+if (currentSection === "splice") {
+
+    title.textContent = "✂️ 拼接素材";
+
+    const spliceSongs =
+        songs.filter(song =>
+            song.type === "splice"
+        );
+
+    renderSongs(spliceSongs);
+
+}
 
       /* ------------------------------
          音效
@@ -879,20 +938,24 @@ function setupMusicPlayLimit(audio) {
        style="
     border:none;
     background:transparent;
-    color:${
-        song.type === 'effect'
-            ? (favorite ? '#ffd54a' : 'white')
+color:${
+    song.type === 'effect'
+        ? (favorite ? '#ffd54a' : 'white')
+        : song.type === 'splice'
+            ? (favorite ? '#a855f7' : 'white')
             : (favorite ? '#ff4d6d' : 'white')
-    };
+};
     font-size:28px;
     cursor:pointer;
     padding:6px;
 "
         "
     >
-     ${song.type === "effect"
+   ${song.type === "effect"
     ? (favorite ? "★" : "☆")
-    : (favorite ? "♥" : "♡")
+    : song.type === "splice"
+        ? "✂"
+        : (favorite ? "♥" : "♡")
 }
     </button>
 
