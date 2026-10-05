@@ -712,6 +712,31 @@ function setupMusicPlayLimit(audio) {
         }
     });
 }
+
+/* ========================================
+   拼接素材：一次只能播放 1 首
+======================================== */
+
+let currentSpliceAudio = null;
+
+function setupSplicePlayLimit(audio) {
+
+    audio.addEventListener("play", function () {
+
+        if (
+            currentSpliceAudio &&
+            currentSpliceAudio !== audio
+        ) {
+            currentSpliceAudio.pause();
+        }
+
+        currentSpliceAudio = audio;
+
+    });
+
+}
+    
+    
     /* ==========================================
        切換：
        音樂 / 音效 / 我的最愛
@@ -975,7 +1000,15 @@ if (audio && song.type === "music") {
     setupMusicPlayLimit(audio);
 }
 
+        if (audio && song.type === "splice") {
+    setupSplicePlayLimit(audio);
+}
+
+        
       });
+
+
+
 
     }
 
