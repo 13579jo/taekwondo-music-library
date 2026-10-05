@@ -874,7 +874,28 @@ function setupSplicePlayLimit(audio) {
     });
 
 }
-    
+    /* ========================================
+   音效：一次只能播放 1 首
+======================================== */
+
+let currentEffectAudio = null;
+
+function setupEffectPlayLimit(audio) {
+
+    audio.addEventListener("play", function () {
+
+        if (
+            currentEffectAudio &&
+            currentEffectAudio !== audio
+        ) {
+            currentEffectAudio.pause();
+        }
+
+        currentEffectAudio = audio;
+
+    });
+
+}
     
     /* ==========================================
        切換：
@@ -1143,6 +1164,10 @@ if (audio && song.type === "music") {
     setupSplicePlayLimit(audio);
 }
 
+if (audio && song.type === "effect") {
+    setupEffectPlayLimit(audio);
+}
+        
         
       });
 
