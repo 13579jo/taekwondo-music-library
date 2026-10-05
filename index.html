@@ -249,7 +249,7 @@
   class="tab-button"
   onclick="showSection('splice')"
 >
-  ✂️ 拼接素材
+  ✂️ 拼接
 </button>
 
 
@@ -728,7 +728,7 @@ const songs = [
 ];
 
 // ========================================
-// 拼接素材 01～62
+// 拼接 01～62
 // 自動建立拼接素材資料
 // ========================================
 
@@ -740,7 +740,7 @@ const spliceMaterials = Array.from(
 
         return {
             id: "splice" + number,
-            title: "拼接素材 " + number,
+            title: "拼接" + number,
             info: "短音樂片段｜可用於片頭、過場、高潮或結尾",
             file: `拼接素材/${number}_拼接素材.mp3`,
             type: "splice"
@@ -787,7 +787,7 @@ songs.push(...spliceMaterials);
 
 } else if (type === "splice") {
 
-    // 拼接素材：剪刀，標記後變紫色
+    // 拼接：剪刀，標記後變紫色
     button.textContent = "✂";
     button.style.color = newFavorite ? "#a855f7" : "white";
 
@@ -853,7 +853,7 @@ function setupMusicPlayLimit(audio) {
 }
 
 /* ========================================
-   拼接素材：一次只能播放 1 首
+   拼接：一次只能播放 1 首
 ======================================== */
 
 let currentSpliceAudio = null;
@@ -978,12 +978,12 @@ function setupEffectPlayLimit(audio) {
 
       }
 /* -----------------------------
-   拼接素材
+   拼接
 ----------------------------- */
 
 if (currentSection === "splice") {
 
-    title.textContent = "✂️ 拼接素材";
+    title.textContent = "✂️ 拼接";
 
     const spliceSongs =
         songs.filter(song =>
