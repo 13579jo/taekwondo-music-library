@@ -1,1213 +1,603 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>自由品勢音樂與音效素材庫</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, "Microsoft JhengHei", sans-serif;
-      background: #0b0b12;
-      color: white;
-    }
-
-    /* ==============================
-       網頁最上方標題
-    ============================== */
-    .header {
-      text-align: center;
-      padding: 45px 20px 30px;
-      background: linear-gradient(135deg, #101018, #24104d);
-    }
-
-    .header h1 {
-      margin: 0;
-      font-size: 34px;
-    }
-
-    .header p {
-      margin: 12px 0 0;
-      color: #c9c9d8;
-      font-size: 16px;
-    }
-
-    /* ==============================
-       主功能按鈕
-    ============================== */
-    .tabs {
-      width: 92%;
-      max-width: 900px;
-      margin: 25px auto 0;
-
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
-
-    .tab-button {
-      border: 1px solid #39394a;
-      background: #171721;
-      color: white;
-      padding: 14px 10px;
-      border-radius: 12px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-
-    .tab-button.active {
-      background: #6d3df5;
-      border-color: #6d3df5;
-    }
-
-    /* ==============================
-       內容區域
-    ============================== */
-    .container {
-      width: 92%;
-      max-width: 900px;
-      margin: 22px auto 60px;
-    }
-
-    .section-title {
-      font-size: 22px;
-      margin-bottom: 16px;
-    }
-
-    /* ==============================
-       音樂卡片
-    ============================== */
-    .music-card {
-      background: #171721;
-      border: 1px solid #292936;
-      border-radius: 16px;
-      padding: 18px;
-      margin-bottom: 15px;
-    }
-
-    .music-title {
-      font-size: 20px;
-      font-weight: bold;
-      margin-bottom: 6px;
-    }
-
-    .music-info {
-      color: #aaaabc;
-      font-size: 14px;
-      margin-bottom: 15px;
-    }
-
-    /* ==============================
-       播放器
-    ============================== */
-    audio {
-      width: 100%;
-      display: block;
-      margin-bottom: 14px;
-    }
-
-    /* ==============================
-       收藏與下載按鈕
-    ============================== */
-    .actions {
-      display: flex;
-      gap: 10px;
-    }
-
-    .action-button {
-      flex: 1;
-      padding: 11px;
-      border-radius: 10px;
-      border: 1px solid #3a3a4a;
-      background: #22222e;
-      color: white;
-      font-size: 15px;
-      cursor: pointer;
-    }
-
-    .action-button:hover {
-      background: #30303f;
-    }
-
-    .favorite-active {
-      background: #5b2041;
-      border-color: #ff5b9f;
-      color: #ff8cba;
-    }
-
-    .download-button {
-      background: #6239db;
-      border-color: #754bf1;
-    }
-
-    /* ==============================
-       空白提示
-    ============================== */
-    .empty-message {
-      text-align: center;
-      background: #171721;
-      border: 1px dashed #3a3a4a;
-      border-radius: 16px;
-      padding: 35px 20px;
-      color: #aaaabc;
-    }
-
-    /* ==============================
-       手機版
-    ============================== */
-    @media (max-width: 650px) {
-
-      .header {
-        padding: 35px 15px 25px;
-      }
-
-      .header h1 {
-        font-size: 27px;
-      }
-
-      .header p {
-        font-size: 14px;
-      }
-
-      .tabs {
-        width: 94%;
-        gap: 6px;
-      }
-
-      .tab-button {
-        font-size: 14px;
-        padding: 12px 5px;
-      }
-
-      .container {
-        width: 94%;
-      }
-
-      .music-card {
-        padding: 14px;
-      }
-
-      .music-title {
-        font-size: 18px;
-      }
-
-      .actions {
-        gap: 7px;
-      }
-
-      .action-button {
-        font-size: 14px;
-        padding: 10px 5px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#08192b">
+<title>自由品勢音樂素材庫 · WOW 2.0</title>
+<style>
+:root{color-scheme:dark;--bg:#071828;--card:#142d42;--stroke:#36536a;--neon:#d5ff3d;--white:#f6fbff;--sub:#a9c3d4;--pink:#ff668d;--gold:#ffd45a}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-width:280px;font-family:system-ui,-apple-system,"Microsoft JhengHei","PingFang TC",sans-serif;color:var(--white);background:radial-gradient(ellipse 70% 28% at 8% 3%,#1b5061 0%,transparent 80%),radial-gradient(ellipse 80% 25% at 94% 15%,#284163 0%,transparent 85%),var(--bg);line-height:1.4}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.09;background:repeating-linear-gradient(120deg,transparent 0 52px,#c5ffeb 53px,transparent 54px 104px);z-index:-1}
+button,input,a{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #e7ff96;outline-offset:2px}
+a{color:inherit}
+.app{max-width:1200px;margin:0 auto;padding:12px 13px 100px}
+.hero{overflow:hidden;position:relative;border:1px solid #66895d;border-radius:24px;padding:20px 18px 21px;background:radial-gradient(circle at 90% 25%,#1d5964 0%,transparent 45%),linear-gradient(132deg,#142e43,#09243c 75%);box-shadow:0 20px 60px #0005}
+.hero:after{content:"";position:absolute;right:-66px;top:-60px;width:210px;height:210px;border:1px solid #d5ff3d50;border-radius:50%;box-shadow:0 0 0 34px #d5ff3d09,0 0 0 70px #d5ff3d07;pointer-events:none;animation:pulse 6s ease-in-out infinite alternate}
+.eyebrow{color:var(--neon);font-size:.75rem;font-weight:850;letter-spacing:.16em}.hero h1{font-size:clamp(1.42rem,5vw,2.45rem);line-height:1.24;margin:9px 0 8px;position:relative;z-index:1}.hero p{font-size:.84rem;color:#c5d9e7;margin:0;max-width:35em}
+.hero-steps{display:flex;align-items:end;gap:4px;height:32px;margin-top:16px}.hero-steps i{display:block;width:5px;min-height:5px;border-radius:10px;background:var(--neon);animation:bars 1.15s ease-in-out infinite alternate;box-shadow:0 0 11px #d5ff3d88}.hero-steps i:nth-child(3n){animation-delay:.23s}.hero-steps i:nth-child(4n){animation-delay:.53s}.hero-steps i:nth-child(5n){animation-delay:.15s}
+@keyframes bars{0%{height:6px;opacity:.55}100%{height:30px;opacity:1}}@keyframes pulse{to{transform:scale(1.14);opacity:.45}}@keyframes entrance{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.toolbar{display:grid;gap:11px;margin:14px 0}.tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.tab{border:1px solid #3b5669;padding:11px 4px;border-radius:12px;color:#dce8f0;background:#173247;font-size:.9rem;font-weight:800;min-width:0}.tab[aria-selected=true]{border-color:#d5ff3d;background:var(--neon);color:#122b3c;box-shadow:0 0 14px #d5ff3d4d}.search-wrap{position:relative}.search-wrap input{width:100%;height:46px;border:1px solid #33576b;border-radius:12px;background:#112d42;color:#fff;padding:0 14px;font-size:.94rem}.search-wrap input::placeholder{color:#a5c1d0}
+.headline{display:flex;justify-content:space-between;gap:10px;align-items:baseline;margin:16px 2px 12px}.headline h2{margin:0;font-size:1.04rem}.count{color:var(--sub);font-size:.8rem}.help{color:var(--sub);font-size:.8rem;margin:4px 3px 12px}
+.library{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.track{position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 6px 10px;min-width:0;min-height:142px;border:1px solid #365668;border-radius:15px;background:linear-gradient(165deg,#1b3c51,#122b3e);transition:box-shadow .16s,border-color .16s;animation:entrance .4s backwards}
+.track.playing{border-color:var(--neon);box-shadow:0 0 0 1px #d5ff3d55,0 0 18px #d5ff3d2b}
+.track.unavailable{border-color:#bd6677}
+.num{font-variant-numeric:tabular-nums;font-weight:900;font-size:clamp(1.9rem,7vw,2.6rem);line-height:1;color:var(--neon);text-shadow:0 0 20px #d5ff3d22;white-space:nowrap}
+.track-time{font-size:.9rem;font-weight:800;letter-spacing:.01em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.track-label{color:#c4d7e1;font-size:.68rem;line-height:1.25;text-align:center;min-height:1.45em;max-width:100%;overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow-wrap:anywhere}
+.track-actions{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:auto}
+.track-actions button{width:36px;height:36px;display:grid;place-items:center;padding:0;border-radius:12px;border:1px solid #4a7182;background:#213c51;color:#fff;font-size:1.32rem;line-height:1}
+.track-actions button.play{background:var(--neon);border-color:var(--neon);color:#112838;font-size:1.06rem;font-weight:900}
+.track-actions button.fav.active{color:var(--pink);border-color:#f16b8c}
+.track-actions button.mark.active{color:var(--gold);border-color:var(--gold)}
+.track:after{content:"";position:absolute;bottom:0;left:0;height:3px;width:var(--progress,0%);max-width:100%;background:var(--neon);border-radius:0 0 0 13px;transition:width .2s linear}
+.empty{padding:35px 15px;color:var(--sub);text-align:center;background:#142e43;border:1px dashed #3f6172;border-radius:18px}
+.editor{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;text-decoration:none;border-radius:14px;background:var(--neon);color:#142838;font-weight:950;padding:16px;margin:22px 0;box-shadow:0 7px 23px #d5ff3d33}
+.footer{text-align:center;color:#89a6bb;font-size:.74rem;margin-top:22px}
+.intro{position:fixed;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;background:radial-gradient(circle at center,#1b5562,#08192b 65%);transition:opacity .45s;pointer-events:auto}
+.intro.hide{opacity:0;pointer-events:none}.intro[hidden]{display:none}.intro .intro-logo{font-size:clamp(1.6rem,6vw,3rem);font-weight:950;color:var(--neon);text-align:center;letter-spacing:.08em;text-shadow:0 0 28px #d5ff3d91}.intro small{color:#bcd7df;letter-spacing:.1em}.intro button{background:transparent;color:white;border:1px solid #8aaab6;border-radius:50px;padding:8px 20px}
+@media(min-width:650px){.app{padding:25px 28px 90px}.hero{padding:29px 32px}.toolbar{grid-template-columns:1fr 1fr;align-items:center}.library{grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}.track{min-height:158px;padding:16px 10px}.track-actions button{width:42px;height:42px}.num{font-size:2.75rem}}
+@media(max-width:360px){.app{padding-inline:9px}.library{gap:6px}.track{padding:10px 2px;min-height:135px}.track-actions{gap:5px}.track-actions button{width:31px;height:33px}.track-time{font-size:.8rem}.track-label{font-size:.63rem}.tabs{gap:5px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
 </head>
-
-
 <body>
-
-  <!-- ==============================
-       網頁標題
-  ============================== -->
-  <header class="header">
-
-    <h1>🥋 自由品勢音樂與音效素材庫</h1>
-
-    <p>
-      自由品勢音樂・音效素材・線上試聽
-    </p>
-
-<p style="margin-top:8px; color:#cfcfe0; font-size:14px;">
-  💡 音樂可同時播放最多 2 首，方便比較與搭配。
-</p>
-    
+<div class="intro" id="intro" aria-hidden="true"><div class="intro-logo">⚡ WOW 2.0</div><small>自由品勢 · 音樂能量啟動</small><button id="skipIntro" type="button">跳過動畫</button></div>
+<div class="app">
+  <header class="hero">
+    <div class="eyebrow">TAEKWONDO · FREESTYLE MUSIC</div>
+    <h1>⚡ 自由品勢音樂庫</h1>
+    <p>把節奏練成你的力量。試聽音樂、拼接與音效，收藏你喜歡的素材。</p>
+    <div class="hero-steps" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
   </header>
-
-
-  <!-- =========================
-     四個主要功能
-========================= -->
-  <div class="tabs">
-
-    <button
-      id="musicButton"
-      class="tab-button active"
-      onclick="showSection('music')"
-    >
-      🎵 音樂
-    </button>
-
-    <button
-  id="spliceButton"
-  class="tab-button"
-  onclick="showSection('splice')"
->
-  ✂️ 拼接
-</button>
-
-
-    
-    <button
-      id="effectButton"
-      class="tab-button"
-      onclick="showSection('effect')"
-    >
-      ⚡ 音效
-    </button>
-
- 
-
+  <div class="toolbar">
+    <div class="tabs" role="tablist" aria-label="素材分類">
+      <button class="tab" data-type="music" role="tab" aria-selected="true" type="button">🎵 音樂</button>
+      <button class="tab" data-type="splice" role="tab" aria-selected="false" type="button">✂️ 拼接</button>
+      <button class="tab" data-type="effect" role="tab" aria-selected="false" type="button">⚡ 音效</button>
+    </div>
+    <div class="search-wrap"><input id="search" type="search" autocomplete="off" aria-label="搜尋素材編號或名稱" placeholder="搜尋編號或音效名稱，例如 01、雷擊"></div>
   </div>
-
-
-  <!-- ==============================
-       網頁主要內容
-  ============================== -->
-  <main class="container">
-
-    <h2 id="sectionTitle" class="section-title">
-      🎵 音樂
-    </h2>
-
-    <div id="content"></div>
-
-  </main>
-
-
-  <script>
-
-    /* ==========================================
-       音樂資料
-
-       以後新增歌曲，只需要在這裡增加資料。
-    ========================================== */
-
-const songs = [
-  {
-    id: "music01",
-    title: "01",
-    file: "自由品勢音樂01 (2).mp3",
-    info: "純音樂｜自由品勢",
-    type: "music"
-  },
-
-  
-  {
-    id: "music02",
-    title: "02",
-    file: "music02.mp3",
-    info: "純音樂｜自由品勢",
-    type: "music"
-  },
-  {
-    id: "music03",
-    title: "03",
-    file: "music03.mp3",
-    info: "純音樂｜自由品勢",
-    type: "music"
-  },
-  {
-    id: "music04",
-    title: "04",
-    file: "music04.mp3",
-    info: "純音樂｜自由品勢",
-    type: "music"
-  },
-  {
-    id: "music05",
-    title: "05",
-    file: "music05.m4a",
-    info: "純音樂｜自由品勢",
-    type: "music"
-  },
-  {
-    id: "music06",
-    title: "06",
-    file: "music06.m4a",
-    info: "純音樂｜自由品勢",
-    type: "music"
-  },
-  {
-    id: "music07",
-    title: "07",
-    file: "music07.m4a",
-    info: "純音樂｜自由品勢",
-    type: "music"
-  },
-  {
-    id: "music08",
-    title: "08",
-    file: "music08.m4a",
-    info: "純音樂｜自由品勢",
-    type: "music"
-  },
-  {
-    id: "music09",
-    title: "09",
-    file: "music09.m4a",
-    info: "純音樂｜自由品勢",
-    type: "music"
-  },
-  {
-    id: "music10",
-    title: "10",
-    file: "music10.m4a",
-    info: "純音樂｜自由品勢",
-    type: "music"
-  },
-{
-  id: "music11",
-  title: "11",
-  file: "music11.m4a",
-  info: "純音樂｜自由品勢",
-  type: "music"
-},
-  
-  
-  {
-    id: "music12",
-    title: "12",
-    file: "music12.mp3",
-    info: "純音樂｜自由品勢",
-    type: "music"
-  },
-  {
-    id: "music13",
-    title: "13",
-    file: "music13.mp3",
-    info: "純音樂｜自由品勢",
-    type: "music"
-  },
-  {
-    id: "music14",
-    title: "14",
-    file: "music14.mp3",
-    info: "純音樂｜自由品勢",
-    type: "music"
-  },
-
- {
-    id: "music15",
-    title: "15",
-    file: "music15.mp3",
-    info: "純音樂｜自由品勢",
-    type: "music"
-  },
-
- {
-    id: "music16",
-    title: "16",
-   file: "music16.m4a",
-    info: "純音樂｜自由品勢",
-    type: "music"
-  },
-
- {
-    id: "music17",
-    title: "17",
-    file: "music17.mp3",
-    info: "純音樂｜自由品勢",
-    type: "music"
-  },
-
- {
-    id: "music18",
-    title: "18",
-    file: "music18.mp3",
-    info: "純音樂｜自由品勢",
-    type: "music"
-  },
- {
-    id: "music19",
-    title: "19",
-    file: "music19.mp3",
-    info: "純音樂｜自由品勢",
-    type: "music"
-  },
- {
-    id: "music20",
-    title: "20",
-    file: "music20.mp3",
-    info: "純音樂｜自由品勢",
-    type: "music"
-  },
-
-
-
-{
-  id: "effect01",
-  title: "01 強力重擊",
-  file: "01_強力重擊.wav",
-  info: "音效｜強力重擊",
-  type: "effect"
-},
-{
-  id: "effect02",
-  title: "02 超重低音衝擊",
-  file: "02_超重低音衝擊.wav",
-  info: "音效｜超重低音衝擊",
-  type: "effect"
-},
-{
-  id: "effect03",
-  title: "03 閃電爆擊",
-  file: "03_閃電爆擊.wav",
-  info: "音效｜閃電爆擊",
-  type: "effect"
-},
-{
-  id: "effect04",
-  title: "04 雷擊",
-  file: "04_雷擊.wav",
-  info: "音效｜雷擊",
-  type: "effect"
-},
-{
-  id: "effect05",
-  title: "05 戰鼓重擊",
-  file: "05_戰鼓重擊.wav",
-  info: "音效｜戰鼓重擊",
-  type: "effect"
-},
-{
-  id: "effect06",
-  title: "06 三連鼓點",
-  file: "06_三連鼓點.wav",
-  info: "音效｜三連鼓點",
-  type: "effect"
-},
-{
-  id: "effect07",
-  title: "07 五連加速鼓點",
-  file: "07_五連加速鼓點.wav",
-  info: "音效｜五連加速鼓點",
-  type: "effect"
-},
-{
-  id: "effect08",
-  title: "08 刀劍出鞘",
-  file: "08_刀劍出鞘.wav",
-  info: "音效｜刀劍出鞘",
-  type: "effect"
-},
-{
-  id: "effect09",
-  title: "09 刀劍碰撞",
-  file: "09_刀劍碰撞.wav",
-  info: "音效｜刀劍碰撞",
-  type: "effect"
-},
-{
-  id: "effect10",
-  title: "10 快速揮刀",
-  file: "10_快速揮刀.wav",
-  info: "音效｜快速揮刀",
-  type: "effect"
-},
-{
-  id: "effect11",
-  title: "11 旋轉Whoosh",
-  file: "11_旋轉Whoosh.wav",
-  info: "音效｜旋轉Whoosh",
-  type: "effect"
-},
-{
-  id: "effect12",
-  title: "12 高速飛踢",
-  file: "12_高速飛踢.wav",
-  info: "音效｜高速飛踢",
-  type: "effect"
-},
-{
-  id: "effect13",
-  title: "13 爆發衝擊",
-  file: "13_爆發衝擊.wav",
-  info: "音效｜爆發衝擊",
-  type: "effect"
-},
-{
-  id: "effect14",
-  title: "14 低頻上升",
-  file: "14_低頻上升.wav",
-  info: "音效｜低頻上升",
-  type: "effect"
-},
-{
-  id: "effect15",
-  title: "15 Drop前下墜",
-  file: "15_Drop前下墜.wav",
-  info: "音效｜Drop前下墜",
-  type: "effect"
-},
-{
-  id: "effect16",
-  title: "16 水滴",
-  file: "16_水滴.wav",
-  info: "音效｜水滴",
-  type: "effect"
-},
-{
-  id: "effect17",
-  title: "17 東方金屬鐘",
-  file: "17_東方金屬鐘.wav",
-  info: "音效｜東方金屬鐘",
-  type: "effect"
-},
-{
-  id: "effect18",
-  title: "18 老鷹提示音",
-  file: "18_老鷹提示音.wav",
-  info: "音效｜老鷹提示音",
-  type: "effect"
-},
-{
-  id: "effect19",
-  title: "19 神秘閃光",
-  file: "19_神秘閃光.wav",
-  info: "音效｜神秘閃光",
-  type: "effect"
-},
-{
-  id: "effect20",
-  title: "20 終極重擊",
-  file: "20_終極重擊.wav",
-  info: "音效｜終極重擊",
-  type: "effect"
-},
-{
-    id: "effect21",
-    title: "21 雷雨震撼長音效",
-    file: "21_雷雨震撼長音效.mp3",
-    info: "音效｜雷雨震撼｜約62秒",
-    type: "effect"
-},
-{
-    id: "effect22",
-    title: "22 超重低音脈衝長音效",
-    file: "22_超重低音脈衝長音效.mp3",
-    info: "音效｜超重低音｜約62秒",
-    type: "effect"
-},
-{
-    id: "effect23",
-    title: "23 戰鼓進攻節奏長音效",
-    file: "23_戰鼓進攻節奏長音效.mp3",
-    info: "音效｜戰鼓節奏｜約62秒",
-    type: "effect"
-},
-{
-    id: "effect24",
-    title: "24 刀劍金屬碰撞長音效",
-    file: "24_刀劍金屬碰撞長音效.mp3",
-    info: "音效｜刀劍金屬｜約62秒",
-    type: "effect"
-},
-{
-    id: "effect25",
-    title: "25 高速咻咻長音效",
-    file: "25_高速咻咻長音效.mp3",
-    info: "音效｜高速咻咻｜約62秒",
-    type: "effect"
-},
-{
-    id: "effect26",
-    title: "26 碎裂衝擊長音效",
-    file: "26_碎裂衝擊長音效.mp3",
-    info: "音效｜碎裂衝擊｜約62秒",
-    type: "effect"
-},
-{
-    id: "effect27",
-    title: "27 烈火燃燒長音效",
-    file: "27_烈火燃燒長音效.mp3",
-    info: "音效｜烈火燃燒｜約62秒",
-    type: "effect"
-},
-{
-    id: "effect28",
-    title: "28 強風暴風長音效",
-    file: "28_強風暴風長音效.mp3",
-    info: "音效｜強風暴風｜約62秒",
-    type: "effect"
-},
-{
-    id: "effect29",
-    title: "29 大雨雷鳴長音效",
-    file: "29_大雨雷鳴長音效.mp3",
-    info: "音效｜大雨雷鳴｜約62秒",
-    type: "effect"
-},
-{
-    id: "effect30",
-    title: "30 神秘鐘聲長音效",
-    file: "30_神秘鐘聲長音效.mp3",
-    info: "音效｜神秘鐘聲｜約62秒",
-    type: "effect"
-},
-{
-    id: "effect31",
-    title: "31 心跳緊張長音效",
-    file: "31_心跳緊張長音效.mp3",
-    info: "音效｜心跳緊張｜約62秒",
-    type: "effect"
-},
-{
-    id: "effect32",
-    title: "32 電影式上升長音效",
-    file: "32_電影式上升長音效.mp3",
-    info: "音效｜電影式上升｜約62秒",
-    type: "effect"
-},
-{
-    id: "effect33",
-    title: "33 地鳴低頻長音效",
-    file: "33_地鳴低頻長音效.mp3",
-    info: "音效｜地鳴低頻｜約62秒",
-    type: "effect"
-},
-{
-    id: "effect34",
-    title: "34 快速踢擊咻聲長音效",
-    file: "34_快速踢擊咻聲長音效.mp3",
-    info: "音效｜踢擊咻聲｜約62秒",
-    type: "effect"
-},
-{
-    id: "effect35",
-    title: "35 連續重擊組合長音效",
-    file: "35_連續重擊組合長音效.mp3",
-    info: "音效｜連續重擊｜約62秒",
-    type: "effect"
-},
-{
-    id: "effect36",
-    title: "36 金屬鎖鏈長音效",
-    file: "36_金屬鎖鏈長音效.mp3",
-    info: "音效｜金屬鎖鏈｜約62秒",
-    type: "effect"
-},
-{
-    id: "effect37",
-    title: "37 水滴節奏長音效",
-    file: "37_水滴節奏長音效.mp3",
-    info: "音效｜水滴節奏｜約62秒",
-    type: "effect"
-},
-{
-    id: "effect38",
-    title: "38 神秘能量長音效",
-    file: "38_神秘能量長音效.mp3",
-    info: "音效｜神秘能量｜約62秒",
-    type: "effect"
-},
-{
-    id: "effect39",
-    title: "39 爆破重擊長音效",
-    file: "39_爆破重擊長音效.mp3",
-    info: "音效｜爆破重擊｜約62秒",
-    type: "effect"
-},
-{
-    id: "effect40",
-    title: "40 自由品勢動作長音效",
-    file: "40_自由品勢動作長音效.mp3",
-    info: "音效｜自由品勢動作｜約62秒",
-    type: "effect"
-}
-
-
-    
-  
-];
-
-// ========================================
-// 拼接 01～62
-// 自動建立拼接素材資料
-// ========================================
-
-const spliceMaterials = Array.from(
-    { length: 62 },
-    (_, index) => {
-
-        const number = String(index + 1).padStart(2, "0");
-
-        return {
-            id: "splice" + number,
-            title: "拼接" + number,
-            info: "短音樂片段｜可用於片頭、過場、高潮或結尾",
-            file: `拼接素材/${number}_拼接素材.mp3`,
-            type: "splice"
-        };
-    }
-);
-
-songs.push(...spliceMaterials);
-
-    
-    /* ==========================================
-       判斷歌曲是否已經收藏
-    ========================================== */
-
-    function isFavorite(id) {
-
-      return localStorage.getItem(
-        "favorite_" + id
-      ) === "true";
-
-    }
-
-
-    /* ==========================================
-       收藏／取消收藏
-    ========================================== */
-
-  function toggleFavorite(id, type, button) {
-
-    const current = isFavorite(id);
-    const newFavorite = !current;
-
-    localStorage.setItem(
-        "favorite_" + id,
-        newFavorite ? "true" : "false"
-    );
-
-    // 只更新愛心／星星，不重新載入播放器
- if (type === "effect") {
-
-    // 音效：☆ → ★
-    button.textContent = newFavorite ? "★" : "☆";
-    button.style.color = newFavorite ? "#ffd54a" : "white";
-
-} else if (type === "splice") {
-
-    // 拼接：剪刀，標記後變紫色
-    button.textContent = "✂";
-    button.style.color = newFavorite ? "#a855f7" : "white";
-
-} else {
-
-    // 音樂：♡ → ♥
-    button.textContent = newFavorite ? "♥" : "♡";
-    button.style.color = newFavorite ? "#ff4d6d" : "white";
-
-}
-    // 收藏頁取消收藏時，直接把這張音樂卡移除
-    if (
-        currentSection === "favorite" &&
-        type === "music" &&
-        !newFavorite
-    ) {
-
-        const card = button.closest(".music-card");
-
-        if (card) {
-            card.remove();
-        }
-    }
-}
-    /* ==========================================
-       目前所在頁面
-    ========================================== */
-
-    let currentSection = "music";
-
-// ========================================
-// 最多同時播放 2 首音樂
-// 第 3 首播放時，自動暫停最早播放的音樂
-// ========================================
-
-let playingMusicQueue = [];
-
-function setupMusicPlayLimit(audio) {
-
-    audio.addEventListener("play", function () {
-
-        // 移除已停止或已結束的播放器
-        playingMusicQueue = playingMusicQueue.filter(player =>
-            player !== audio &&
-            player.isConnected &&
-            !player.paused &&
-            !player.ended
-        );
-
-        // 最新播放的放最後面
-        playingMusicQueue.push(audio);
-
-        // 超過 2 首，就暫停最早播放的那一首
-        while (playingMusicQueue.length > 2) {
-
-            const oldest = playingMusicQueue.shift();
-
-            if (oldest && !oldest.paused) {
-                oldest.pause();
-            }
-        }
-    });
-}
-
-/* ========================================
-   拼接：一次只能播放 1 首
-======================================== */
-
-let currentSpliceAudio = null;
-
-function setupSplicePlayLimit(audio) {
-
-    audio.addEventListener("play", function () {
-
-        if (
-            currentSpliceAudio &&
-            currentSpliceAudio !== audio
-        ) {
-            currentSpliceAudio.pause();
-        }
-
-        currentSpliceAudio = audio;
-
-    });
-
-}
-    /* ========================================
-   音效：一次只能播放 1 首
-======================================== */
-
-let currentEffectAudio = null;
-
-function setupEffectPlayLimit(audio) {
-
-    audio.addEventListener("play", function () {
-
-        if (
-            currentEffectAudio &&
-            currentEffectAudio !== audio
-        ) {
-            currentEffectAudio.pause();
-        }
-
-        currentEffectAudio = audio;
-
-    });
-
-}
-    
-    /* ==========================================
-       切換：
-       音樂 / 音效 / 我的最愛
-    ========================================== */
-
-    function showSection(type) {
-
-      currentSection = type;
-
-      document
-        .querySelectorAll(".tab-button")
-        .forEach(button => {
-          button.classList.remove("active");
-        });
-
-
-      if (type === "music") {
-
-        document
-          .getElementById("musicButton")
-          .classList.add("active");
-
-      }
-
-
-      if (type === "effect") {
-
-        document
-          .getElementById("effectButton")
-          .classList.add("active");
-
-      }
-
-
-      if (type === "favorite") {
-
-        document
-          .getElementById("favoriteButton")
-          .classList.add("active");
-
-      }
-
-
-      renderCurrentSection();
-
-    }
-
-
-    /* ==========================================
-       顯示目前頁面內容
-    ========================================== */
-
-    function renderCurrentSection() {
-
-      const title =
-        document.getElementById("sectionTitle");
-
-      const content =
-        document.getElementById("content");
-
-
-      content.innerHTML = "";
-
-
-      /* ------------------------------
-         音樂
-      ------------------------------ */
-
-      if (currentSection === "music") {
-
-        title.textContent = "🎵 音樂";
-
-        const musicSongs =
-          songs.filter(song =>
-            song.type === "music"
-          );
-
-        renderSongs(musicSongs);
-
-      }
-/* -----------------------------
-   拼接
------------------------------ */
-
-if (currentSection === "splice") {
-
-    title.textContent = "✂️ 拼接";
-
-    const spliceSongs =
-        songs.filter(song =>
-            song.type === "splice"
-        );
-
-    renderSongs(spliceSongs);
-
-}
-
-      /* ------------------------------
-         音效
-      ------------------------------ */
-
-      if (currentSection === "effect") {
-
-        title.textContent = "⚡ 音效";
-
-        const effects =
-          songs.filter(song =>
-            song.type === "effect"
-          );
-
-
-        if (effects.length === 0) {
-
-          content.innerHTML = `
-            <div class="empty-message">
-
-              ⚡ 音效素材準備中
-
-              <br><br>
-
-              下一步我們再加入自由品勢專用音效。
-
-            </div>
-          `;
-
-        } else {
-
-          renderSongs(effects);
-
-        }
-
-      }
-
-
-       /* ==============================
-     我的最愛
-     ============================== */
-
-  if (currentSection === "favorite") {
-
-  title.textContent = "♥ 收藏";
-
-  const favorites =
-    songs.filter(song =>
-        song.type === "music" &&
-        isFavorite(song.id)
-    );
-
-    if (favorites.length === 0) {
-
-      content.innerHTML = `
-        <div class="empty-message">
-
-          目前還沒有收藏音樂。
-
-          <br><br>
-
-          點歌曲下面的「♡  收藏」即可收藏。
-
-        </div>
-      `;
-
-    } else {
-
-      renderSongs(favorites);
-
-    }
-
-  }
-    }
-
-
-    /* ==========================================
-       建立歌曲播放器
-    ========================================== */
-
-    function renderSongs(songList) {
-
-      const content =
-        document.getElementById("content");
-
-
-      songList.forEach(song => {
-
-        const favorite =
-          isFavorite(song.id);
-
-
-        const card =
-          document.createElement("div");
-
-
-        card.className =
-          "music-card";
-
-
-        card.innerHTML = `
-
-          <div class="music-title">
-            ${song.title}
-          </div>
-
-
-          <div class="music-info">
-            ${song.info}
-          </div>
-
-
-          <div style="display:flex; align-items:center; gap:10px;">
-
-    <audio
-        controls
-        preload="metadata"
-        style="flex:1; min-width:0;"
-    >
-        <source
-            src="${song.file}"
-            type="audio/mpeg"
-        >
-
-        您的瀏覽器不支援音樂播放。
-    </audio>
-
-    <button
-        type="button"
-   onclick="toggleFavorite('${song.id}', '${song.type}', this)"
-       style="
-    border:none;
-    background:transparent;
-color:${
-    song.type === 'effect'
-        ? (favorite ? '#ffd54a' : 'white')
-        : song.type === 'splice'
-            ? (favorite ? '#a855f7' : 'white')
-            : (favorite ? '#ff4d6d' : 'white')
-};
-    font-size:28px;
-    cursor:pointer;
-    padding:6px;
-"
-        "
-    >
-   ${song.type === "effect"
-    ? (favorite ? "★" : "☆")
-    : song.type === "splice"
-        ? "✂"
-        : (favorite ? "♥" : "♡")
-}
-    </button>
-
+  <div class="headline"><h2 id="sectionTitle">🎵 音樂</h2><span id="count" class="count"></span></div>
+  <p class="help" id="tip">每首都能單獨試聽 · 音樂最多同時播放兩首</p>
+  <main id="library" class="library" aria-live="off"></main>
+  <a class="editor" href="https://13579jo.github.io/taekwondo-editor/">✂️ 前往自由品勢剪輯器　↗</a>
+  <div class="footer">原始素材僅供線上試聽及剪輯使用 · 不提供下載按鈕</div>
 </div>
-
- 
-        `;
-
-
-        content.appendChild(card);
-const audio = card.querySelector("audio");
-
-if (audio && song.type === "music") {
-    setupMusicPlayLimit(audio);
+<script>
+'use strict';
+// 每次新增一整批歌曲，把最新批次放在最上面。音樂檔也須另行提交到 GitHub。
+// 每個 id 永久固定，不可用畫面上的序號當成 id。
+const NEW_MUSIC_BATCHES = [
+  // 範例（請先將 MP3 上傳至 GitHub，然後取消註解）：
+  // [{id:'20261029-new-a',file:'新增音樂/新歌A.mp3',title:'新歌A'},
+  //  {id:'20261029-new-b',file:'新增音樂/新歌B.mp3',title:'新歌B'}],
+];
+// 以下 60 筆素材資料直接保留自你上傳的舊版 index.html。
+const ORIGINAL_LIBRARY_DATA = [
+  {
+    "id": "music01",
+    "title": "01",
+    "file": "自由品勢音樂01 (2).mp3",
+    "info": "純音樂｜自由品勢",
+    "type": "music"
+  },
+  {
+    "id": "music02",
+    "title": "02",
+    "file": "music02.mp3",
+    "info": "純音樂｜自由品勢",
+    "type": "music"
+  },
+  {
+    "id": "music03",
+    "title": "03",
+    "file": "music03.mp3",
+    "info": "純音樂｜自由品勢",
+    "type": "music"
+  },
+  {
+    "id": "music04",
+    "title": "04",
+    "file": "music04.mp3",
+    "info": "純音樂｜自由品勢",
+    "type": "music"
+  },
+  {
+    "id": "music05",
+    "title": "05",
+    "file": "music05.m4a",
+    "info": "純音樂｜自由品勢",
+    "type": "music"
+  },
+  {
+    "id": "music06",
+    "title": "06",
+    "file": "music06.m4a",
+    "info": "純音樂｜自由品勢",
+    "type": "music"
+  },
+  {
+    "id": "music07",
+    "title": "07",
+    "file": "music07.m4a",
+    "info": "純音樂｜自由品勢",
+    "type": "music"
+  },
+  {
+    "id": "music08",
+    "title": "08",
+    "file": "music08.m4a",
+    "info": "純音樂｜自由品勢",
+    "type": "music"
+  },
+  {
+    "id": "music09",
+    "title": "09",
+    "file": "music09.m4a",
+    "info": "純音樂｜自由品勢",
+    "type": "music"
+  },
+  {
+    "id": "music10",
+    "title": "10",
+    "file": "music10.m4a",
+    "info": "純音樂｜自由品勢",
+    "type": "music"
+  },
+  {
+    "id": "music11",
+    "title": "11",
+    "file": "music11.m4a",
+    "info": "純音樂｜自由品勢",
+    "type": "music"
+  },
+  {
+    "id": "music12",
+    "title": "12",
+    "file": "music12.mp3",
+    "info": "純音樂｜自由品勢",
+    "type": "music"
+  },
+  {
+    "id": "music13",
+    "title": "13",
+    "file": "music13.mp3",
+    "info": "純音樂｜自由品勢",
+    "type": "music"
+  },
+  {
+    "id": "music14",
+    "title": "14",
+    "file": "music14.mp3",
+    "info": "純音樂｜自由品勢",
+    "type": "music"
+  },
+  {
+    "id": "music15",
+    "title": "15",
+    "file": "music15.mp3",
+    "info": "純音樂｜自由品勢",
+    "type": "music"
+  },
+  {
+    "id": "music16",
+    "title": "16",
+    "file": "music16.m4a",
+    "info": "純音樂｜自由品勢",
+    "type": "music"
+  },
+  {
+    "id": "music17",
+    "title": "17",
+    "file": "music17.mp3",
+    "info": "純音樂｜自由品勢",
+    "type": "music"
+  },
+  {
+    "id": "music18",
+    "title": "18",
+    "file": "music18.mp3",
+    "info": "純音樂｜自由品勢",
+    "type": "music"
+  },
+  {
+    "id": "music19",
+    "title": "19",
+    "file": "music19.mp3",
+    "info": "純音樂｜自由品勢",
+    "type": "music"
+  },
+  {
+    "id": "music20",
+    "title": "20",
+    "file": "music20.mp3",
+    "info": "純音樂｜自由品勢",
+    "type": "music"
+  },
+  {
+    "id": "effect01",
+    "title": "01 強力重擊",
+    "file": "01_強力重擊.wav",
+    "info": "音效｜強力重擊",
+    "type": "effect"
+  },
+  {
+    "id": "effect02",
+    "title": "02 超重低音衝擊",
+    "file": "02_超重低音衝擊.wav",
+    "info": "音效｜超重低音衝擊",
+    "type": "effect"
+  },
+  {
+    "id": "effect03",
+    "title": "03 閃電爆擊",
+    "file": "03_閃電爆擊.wav",
+    "info": "音效｜閃電爆擊",
+    "type": "effect"
+  },
+  {
+    "id": "effect04",
+    "title": "04 雷擊",
+    "file": "04_雷擊.wav",
+    "info": "音效｜雷擊",
+    "type": "effect"
+  },
+  {
+    "id": "effect05",
+    "title": "05 戰鼓重擊",
+    "file": "05_戰鼓重擊.wav",
+    "info": "音效｜戰鼓重擊",
+    "type": "effect"
+  },
+  {
+    "id": "effect06",
+    "title": "06 三連鼓點",
+    "file": "06_三連鼓點.wav",
+    "info": "音效｜三連鼓點",
+    "type": "effect"
+  },
+  {
+    "id": "effect07",
+    "title": "07 五連加速鼓點",
+    "file": "07_五連加速鼓點.wav",
+    "info": "音效｜五連加速鼓點",
+    "type": "effect"
+  },
+  {
+    "id": "effect08",
+    "title": "08 刀劍出鞘",
+    "file": "08_刀劍出鞘.wav",
+    "info": "音效｜刀劍出鞘",
+    "type": "effect"
+  },
+  {
+    "id": "effect09",
+    "title": "09 刀劍碰撞",
+    "file": "09_刀劍碰撞.wav",
+    "info": "音效｜刀劍碰撞",
+    "type": "effect"
+  },
+  {
+    "id": "effect10",
+    "title": "10 快速揮刀",
+    "file": "10_快速揮刀.wav",
+    "info": "音效｜快速揮刀",
+    "type": "effect"
+  },
+  {
+    "id": "effect11",
+    "title": "11 旋轉Whoosh",
+    "file": "11_旋轉Whoosh.wav",
+    "info": "音效｜旋轉Whoosh",
+    "type": "effect"
+  },
+  {
+    "id": "effect12",
+    "title": "12 高速飛踢",
+    "file": "12_高速飛踢.wav",
+    "info": "音效｜高速飛踢",
+    "type": "effect"
+  },
+  {
+    "id": "effect13",
+    "title": "13 爆發衝擊",
+    "file": "13_爆發衝擊.wav",
+    "info": "音效｜爆發衝擊",
+    "type": "effect"
+  },
+  {
+    "id": "effect14",
+    "title": "14 低頻上升",
+    "file": "14_低頻上升.wav",
+    "info": "音效｜低頻上升",
+    "type": "effect"
+  },
+  {
+    "id": "effect15",
+    "title": "15 Drop前下墜",
+    "file": "15_Drop前下墜.wav",
+    "info": "音效｜Drop前下墜",
+    "type": "effect"
+  },
+  {
+    "id": "effect16",
+    "title": "16 水滴",
+    "file": "16_水滴.wav",
+    "info": "音效｜水滴",
+    "type": "effect"
+  },
+  {
+    "id": "effect17",
+    "title": "17 東方金屬鐘",
+    "file": "17_東方金屬鐘.wav",
+    "info": "音效｜東方金屬鐘",
+    "type": "effect"
+  },
+  {
+    "id": "effect18",
+    "title": "18 老鷹提示音",
+    "file": "18_老鷹提示音.wav",
+    "info": "音效｜老鷹提示音",
+    "type": "effect"
+  },
+  {
+    "id": "effect19",
+    "title": "19 神秘閃光",
+    "file": "19_神秘閃光.wav",
+    "info": "音效｜神秘閃光",
+    "type": "effect"
+  },
+  {
+    "id": "effect20",
+    "title": "20 終極重擊",
+    "file": "20_終極重擊.wav",
+    "info": "音效｜終極重擊",
+    "type": "effect"
+  },
+  {
+    "id": "effect21",
+    "title": "21 雷雨震撼長音效",
+    "file": "21_雷雨震撼長音效.mp3",
+    "info": "音效｜雷雨震撼｜約62秒",
+    "type": "effect"
+  },
+  {
+    "id": "effect22",
+    "title": "22 超重低音脈衝長音效",
+    "file": "22_超重低音脈衝長音效.mp3",
+    "info": "音效｜超重低音｜約62秒",
+    "type": "effect"
+  },
+  {
+    "id": "effect23",
+    "title": "23 戰鼓進攻節奏長音效",
+    "file": "23_戰鼓進攻節奏長音效.mp3",
+    "info": "音效｜戰鼓節奏｜約62秒",
+    "type": "effect"
+  },
+  {
+    "id": "effect24",
+    "title": "24 刀劍金屬碰撞長音效",
+    "file": "24_刀劍金屬碰撞長音效.mp3",
+    "info": "音效｜刀劍金屬｜約62秒",
+    "type": "effect"
+  },
+  {
+    "id": "effect25",
+    "title": "25 高速咻咻長音效",
+    "file": "25_高速咻咻長音效.mp3",
+    "info": "音效｜高速咻咻｜約62秒",
+    "type": "effect"
+  },
+  {
+    "id": "effect26",
+    "title": "26 碎裂衝擊長音效",
+    "file": "26_碎裂衝擊長音效.mp3",
+    "info": "音效｜碎裂衝擊｜約62秒",
+    "type": "effect"
+  },
+  {
+    "id": "effect27",
+    "title": "27 烈火燃燒長音效",
+    "file": "27_烈火燃燒長音效.mp3",
+    "info": "音效｜烈火燃燒｜約62秒",
+    "type": "effect"
+  },
+  {
+    "id": "effect28",
+    "title": "28 強風暴風長音效",
+    "file": "28_強風暴風長音效.mp3",
+    "info": "音效｜強風暴風｜約62秒",
+    "type": "effect"
+  },
+  {
+    "id": "effect29",
+    "title": "29 大雨雷鳴長音效",
+    "file": "29_大雨雷鳴長音效.mp3",
+    "info": "音效｜大雨雷鳴｜約62秒",
+    "type": "effect"
+  },
+  {
+    "id": "effect30",
+    "title": "30 神秘鐘聲長音效",
+    "file": "30_神秘鐘聲長音效.mp3",
+    "info": "音效｜神秘鐘聲｜約62秒",
+    "type": "effect"
+  },
+  {
+    "id": "effect31",
+    "title": "31 心跳緊張長音效",
+    "file": "31_心跳緊張長音效.mp3",
+    "info": "音效｜心跳緊張｜約62秒",
+    "type": "effect"
+  },
+  {
+    "id": "effect32",
+    "title": "32 電影式上升長音效",
+    "file": "32_電影式上升長音效.mp3",
+    "info": "音效｜電影式上升｜約62秒",
+    "type": "effect"
+  },
+  {
+    "id": "effect33",
+    "title": "33 地鳴低頻長音效",
+    "file": "33_地鳴低頻長音效.mp3",
+    "info": "音效｜地鳴低頻｜約62秒",
+    "type": "effect"
+  },
+  {
+    "id": "effect34",
+    "title": "34 快速踢擊咻聲長音效",
+    "file": "34_快速踢擊咻聲長音效.mp3",
+    "info": "音效｜踢擊咻聲｜約62秒",
+    "type": "effect"
+  },
+  {
+    "id": "effect35",
+    "title": "35 連續重擊組合長音效",
+    "file": "35_連續重擊組合長音效.mp3",
+    "info": "音效｜連續重擊｜約62秒",
+    "type": "effect"
+  },
+  {
+    "id": "effect36",
+    "title": "36 金屬鎖鏈長音效",
+    "file": "36_金屬鎖鏈長音效.mp3",
+    "info": "音效｜金屬鎖鏈｜約62秒",
+    "type": "effect"
+  },
+  {
+    "id": "effect37",
+    "title": "37 水滴節奏長音效",
+    "file": "37_水滴節奏長音效.mp3",
+    "info": "音效｜水滴節奏｜約62秒",
+    "type": "effect"
+  },
+  {
+    "id": "effect38",
+    "title": "38 神秘能量長音效",
+    "file": "38_神秘能量長音效.mp3",
+    "info": "音效｜神秘能量｜約62秒",
+    "type": "effect"
+  },
+  {
+    "id": "effect39",
+    "title": "39 爆破重擊長音效",
+    "file": "39_爆破重擊長音效.mp3",
+    "info": "音效｜爆破重擊｜約62秒",
+    "type": "effect"
+  },
+  {
+    "id": "effect40",
+    "title": "40 自由品勢動作長音效",
+    "file": "40_自由品勢動作長音效.mp3",
+    "info": "音效｜自由品勢動作｜約62秒",
+    "type": "effect"
+  }
+];
+// 62 個拼接素材沿用舊版既有檔名格式。
+const SPLICE_MATERIALS = Array.from({length:62},(_,i)=>{
+  const no=String(i+1).padStart(2,'0');
+  return {id:'splice'+no,title:'拼接'+no,file:`拼接素材/${no}_拼接素材.mp3`,info:'短音樂片段',type:'splice'};
+});
+function getTracks(type){
+  if(type==='music'){
+    const newest = NEW_MUSIC_BATCHES.flat().map(item=>({...item,type:'music',info:item.info||'純音樂｜自由品勢'}));
+    return [...newest,...ORIGINAL_LIBRARY_DATA.filter(s=>s.type==='music')];
+  }
+  return type==='splice' ? SPLICE_MATERIALS : ORIGINAL_LIBRARY_DATA.filter(s=>s.type==='effect');
 }
-
-        if (audio && song.type === "splice") {
-    setupSplicePlayLimit(audio);
+const $=s=>document.querySelector(s);
+const formatTime=seconds=>{
+  if(!Number.isFinite(seconds)||seconds<0)return '--:--';
+  const value=Math.floor(seconds);
+  return String(Math.floor(value/60)).padStart(2,'0')+':'+String(value%60).padStart(2,'0');
+};
+function saved(id){try{return localStorage.getItem('favorite_'+id)==='true'}catch{return false}}
+function toggleSaved(id){try{const next=!saved(id);localStorage.setItem('favorite_'+id,next?'true':'false');return next}catch{return false}}
+let selected='music',playQueue=[];
+const activeAudio=new Set();
+const mediaMap = new Map();
+function stopAll(){
+  for(const a of activeAudio){a.pause();a.currentTime=0;}
+  activeAudio.clear();playQueue=[];mediaMap.clear();
 }
-
-if (audio && song.type === "effect") {
-    setupEffectPlayLimit(audio);
+function onPlay(audio,kind){
+  if(kind==='music'){
+    playQueue=playQueue.filter(a=>a!==audio&&!a.paused&&!a.ended&&activeAudio.has(a));
+    playQueue.push(audio);
+    while(playQueue.length>2){const oldest=playQueue.shift();if(oldest)oldest.pause()}
+  } else {
+    for(const a of [...activeAudio]){if(a!==audio&&!a.paused)a.pause()}
+  }
 }
-        
-        
-      });
-
-
-
-
-    }
-
-
-    /* ==========================================
-       下載 MP3
-    ========================================== */
-
-    function downloadSong(file) {
-
-      const link =
-        document.createElement("a");
-
-      link.href = file;
-
-      link.download = file;
-
-      document.body.appendChild(link);
-
-      link.click();
-
-      link.remove();
-
-    }
-
-
-    
-    /* ==========================================
-       網頁第一次開啟
-    ========================================== */
-
-    renderCurrentSection();
-
-  </script>
-
+const make=(tag,cls,text)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e};
+function cardFor(track,index,type){
+  const card=make('article','track');
+  card.dataset.id=track.id;
+  const displayNumber=String(index+1).padStart(2,'0');
+  const n=make('div','num',displayNumber);
+  const time=make('div','track-time','--:--');time.setAttribute('aria-label','音樂時間');
+  const label=make('div','track-label',type==='effect'?track.title.replace(/^\d+\s*/, ''):type==='splice'?'拼接素材':track.info||'自由品勢音樂');
+  const buttons=make('div','track-actions');
+  const play=make('button','play','▶');play.type='button';play.setAttribute('aria-label',`播放第 ${index+1} 首：${track.title||track.file}`);
+  const fav=make('button',type==='effect'?'mark':'fav',type==='effect'?(saved(track.id)?'★':'☆'):type==='splice'?'✂':saved(track.id)?'♥':'♡');
+  fav.type='button';fav.setAttribute('aria-label','收藏／標記');
+  fav.classList.toggle('active',saved(track.id));
+  buttons.append(play,fav);card.append(n,time,label,buttons);
+  const audio=new Audio();audio.preload='metadata';audio.src=track.file;
+  audio.setAttribute('playsinline','');
+  activeAudio.add(audio);mediaMap.set(track.id,audio);
+  let hasStarted=false;
+  const update=()=>{
+    if(!hasStarted || audio.ended)time.textContent=formatTime(audio.duration);
+    else time.textContent=formatTime(audio.currentTime);
+    if(!audio.paused)card.style.setProperty('--progress',Number.isFinite(audio.duration)&&audio.duration>0?`${Math.min(100,audio.currentTime/audio.duration*100)}%`:'0%');
+  };
+  audio.addEventListener('loadedmetadata',update);
+  audio.addEventListener('durationchange',update);
+  audio.addEventListener('timeupdate',update);
+  audio.addEventListener('play',()=>{hasStarted=true;card.classList.add('playing');play.textContent='Ⅱ';play.setAttribute('aria-label','暫停第 '+(index+1)+' 首');onPlay(audio,type);update()});
+  audio.addEventListener('pause',()=>{card.classList.remove('playing');play.textContent='▶';play.setAttribute('aria-label','繼續播放第 '+(index+1)+' 首');update()});
+  audio.addEventListener('ended',()=>{hasStarted=false;card.classList.remove('playing');play.textContent='▶';card.style.setProperty('--progress','0%');update()});
+  audio.addEventListener('error',()=>{card.classList.add('unavailable');time.textContent='--:--';play.title='音檔尚未成功載入，請核對檔名與格式'});
+  play.addEventListener('click',async()=>{
+    if(!audio.paused){audio.pause();return}
+    try{if(audio.ended){audio.currentTime=0;hasStarted=false}if(!hasStarted&&Number.isFinite(audio.duration))audio.currentTime=0;
+      await audio.play();
+    }catch(e){card.classList.add('unavailable');play.title='無法播放，請確認音檔路徑和瀏覽器格式支援';time.textContent='--:--'}
+  });
+  fav.addEventListener('click',()=>{const isOn=toggleSaved(track.id);fav.classList.toggle('active',isOn);fav.textContent=type==='effect'?(isOn?'★':'☆'):type==='splice'?'✂':isOn?'♥':'♡'});
+  return card;
+}
+function render(){
+  stopAll();const container=$('#library');container.replaceChildren();
+  const tab=selected==='music'?'🎵 音樂':selected==='splice'?'✂️ 拼接':'⚡ 音效';
+  $('#sectionTitle').textContent=tab;
+  const tracks=getTracks(selected);
+  const q=$('#search').value.trim().toLowerCase();
+  // 搜尋編號時使用完整素材清單的固定位置，避免搜尋後出現跳號錯認。
+  const matches=tracks.map((t,i)=>({t,i})).filter(({t,i})=>!q||String(i+1).padStart(2,'0').includes(q)||t.title.toLowerCase().includes(q)||t.file.toLowerCase().includes(q)||t.info.toLowerCase().includes(q));
+  $('#count').textContent=matches.length+' / '+tracks.length+' 個素材';
+  $('#tip').textContent=selected==='music'?'從第一首到最後一首都能單獨試聽 · 最多同時播放兩首':selected==='splice'?'每次試聽一個拼接素材 · 剪刀可以標記':'每次試聽一個音效 · 星星可以標記';
+  if(!matches.length){container.append(make('div','empty','沒有符合搜尋的素材'));return}
+  for(const {t,i} of matches)container.append(cardFor(t,i,selected));
+}
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{
+  selected=b.dataset.type;
+  document.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected',String(x===b)));
+  $('#search').value='';render();
+}));
+$('#search').addEventListener('input',render);
+const intro=$('#intro');
+function dismissIntro(){intro.classList.add('hide');setTimeout(()=>{intro.hidden=true},500)}
+$('#skipIntro').addEventListener('click',dismissIntro);
+setTimeout(dismissIntro,1350);
+render();
+</script>
 </body>
-
 </html>
